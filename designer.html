@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tekton Designer — 2D Technical Layout &amp; Smart Auto Configurator</title>
+<meta name="description" content="Configure your elevator shaft in seconds. Enter shaft width and depth to auto-match door type, derive inner cabin dimensions and rated passenger capacity, then print a technical specification sheet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./chat.css">
+<link rel="stylesheet" href="./luxury-responsive.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E2A52'/%3E%3Crect x='8' y='7' width='16' height='18' fill='none' stroke='%23D9A44F' stroke-width='2'/%3E%3Cpath d='M16 7v18' stroke='%23D9A44F' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+  .stage__canvas-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-primary, #05070A);
+    overflow: hidden;
+  }
+  .stage__canvas {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .stage__canvas canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media(max-width: 1024px) {
+    .dsn__layout {
+      grid-template-columns: 1fr !important;
+      gap: 2rem;
+    }
+    .pnl--sticky {
+      position: relative !important;
+      top: 0 !important;
+    }
+  }
+  @media(max-width: 768px) {
+    .wrap {
+      padding: 0 1rem;
+    }
+    .stage__bar {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 0.75rem;
+    }
+    .stage__tools {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .spec__foot {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .spec__foot .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Call support: <a href="tel:+918925448131">+91 89254 48131</a> &nbsp;/&nbsp; <a href="tel:+919500158530">95001 58530</a></span>
+    <span><b class="topbar__hide">IS 14665-1 licensed execution &nbsp;·&nbsp;</b><a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a></span>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="logo" href="./index.html" aria-label="Tekton Elevators home">
+      <img class="logo__img" src="./assets/logo-lock.png" alt="Tekton Elevators" width="900" height="207">
+      <img class="logo__img logo__img--light" src="./assets/logo-lock-light.png" alt="" aria-hidden="true" width="900" height="207">
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <button class="icon-btn nav-close" id="navClose" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <a href="./index.html#about">About</a>
+      <a href="./index.html#products">Products</a>
+      <a href="./index.html#technology">Technology</a>
+      <a href="./index.html#service">Service</a>
+      <a href="./designer.html" aria-current="page">Lift Designer</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="Switch to dark mode"></button>
+      <a class="btn btn--gold" href="./index.html#contact">Get a quote</a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="dsn-hero">
+    <div class="wrap">
+      <p class="eyebrow">Tekton Designer</p>
+      <h1 class="h-sec">2D technical layout &amp; smart auto configurator.</h1>
+      <p class="lede">Enter your shaft dimensions. We auto-match the door configuration, derive the inner cabin envelope and return the rated capacity &mdash; drawn to scale, ready for your architect.</p>
+    </div>
+  </section>
+
+  <section class="dsn">
+    <div class="wrap">
+      <div class="dsn__layout">
+
+        <!-- ===== configuration panel ===== -->
+        <form class="pnl pnl--sticky" id="cfg" autocomplete="off">
+          <div class="pnl__head"><h2>Shaft dimensions (mm)</h2></div>
+          <div class="pnl__body">
+            <div class="fld-row">
+              <div class="fld">
+                <label for="sw">Shaft width (A)</label>
+                <input type="number" id="sw" value="1750" min="900" max="3000" step="10" inputmode="numeric">
+              </div>
+              <div class="fld">
+                <label for="sd">Shaft depth (B)</label>
+                <input type="number" id="sd" value="1524" min="900" max="3000" step="10" inputmode="numeric">
+              </div>
+            </div>
+            <p class="fld"><small>Clear internal masonry opening, plaster to plaster. Working range 900&ndash;3000&nbsp;mm.</small></p>
+          </div>
+
+          <div class="pnl__head pnl__head--split">
+            <h3>Door configuration</h3>
+            <span class="chip" id="matchChip">Auto-matched</span>
+          </div>
+          <div class="pnl__body">
+            <div class="fld-row">
+              <div class="fld">
+                <label for="dtype">Door type</label>
+                <select id="dtype">
+                  <option value="CO" selected>Center opening (CO)</option>
+                  <option value="SO">Side opening (2SO &mdash; right)</option>
+                </select>
+              </div>
+              <div class="fld">
+                <label for="dsize">Standard door size</label>
+                <select id="dsize">
+                  <option value="600">600 mm</option>
+                  <option value="700">700 mm</option>
+                  <option value="800" selected>800 mm</option>
+                  <option value="900">900 mm</option>
+                  <option value="1000">1000 mm</option>
+                  <option value="1100">1100 mm</option>
+                  <option value="1200">1200 mm</option>
+                </select>
+              </div>
+            </div>
+            <small id="dsizeNote" class="fld__note">Auto-matched to the widest opening this shaft accepts.</small>
+
+            <div class="alert" id="doorWarning" hidden>
+              <strong>Shaft size limit exceeded</strong>
+              <span>Shaft width (<b id="warnShaftW">1750</b>&nbsp;mm) cannot accommodate a <b id="warnDoorW">800</b>&nbsp;mm <b id="warnDoorType">centre opening</b> door. Minimum required shaft width is <b id="warnReqW">1700</b>&nbsp;mm.</span>
+            </div>
+
+            <div class="fld">
+              <label for="finishSet">Cabin finish</label>
+              <div class="finishes" id="finishSet" role="radiogroup" aria-label="Cabin finish">
+                <label class="finish" style="--sw:#C79A54"><input type="radio" name="finish" value="gold" checked><span>Brass gold</span></label>
+                <label class="finish" style="--sw:#B9BFC6"><input type="radio" name="finish" value="steel"><span>Brushed steel</span></label>
+                <label class="finish" style="--sw:#8FA8B8"><input type="radio" name="finish" value="glass"><span>Panoramic glass</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="pnl__body pnl__body--actions">
+            <button type="button" class="btn btn--navy" id="doorBtn">Open door</button>
+            <button type="button" class="btn btn--ghost" id="resetBtn">Reset to standard</button>
+          </div>
+        </form>
+
+        <!-- ===== drawing + spec ===== -->
+        <div>
+          <div class="stage">
+            <div class="stage__bar">
+              <span class="stage__title">Plan view &mdash; scale drawing</span>
+              <div class="stage__tools">
+                <span class="chip chip--warn" id="capChip">8 passengers · 544 kg</span>
+                <button type="button" class="btn btn--ghost btn--sm" id="doorBtn2">Toggle door</button>
+              </div>
+            </div>
+            <div class="stage__canvas-wrapper">
+              <div class="stage__canvas">
+                <canvas id="dwg" role="img" aria-label="Scale plan view of the elevator shaft, cabin envelope and door opening"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="pnl spec">
+            <div class="pnl__head"><h3>Technical specifications</h3></div>
+            <table>
+              <tbody>
+                <tr><th scope="row">Inner shaft size (A × B)</th><td id="oShaft">1750 × 1524 mm</td></tr>
+                <tr class="is-key"><th scope="row">Inner cabin size</th><td id="oCabin">1380 × 1054 mm</td></tr>
+                <tr><th scope="row">Cabin floor area</th><td id="oArea">1.45 m²</td></tr>
+                <tr><th scope="row">Door opening size</th><td id="oDoor">800 mm</td></tr>
+                <tr><th scope="row">Type of opening</th><td id="oType">Center opening (CO)</td></tr>
+                <tr class="is-key"><th scope="row">Capacity of lift</th><td id="oCap">8 passengers (544 kg)</td></tr>
+                <tr><th scope="row">Cabin finish</th><td id="oFinish">Brass gold</td></tr>
+                <tr><th scope="row">Drive &amp; standard</th><td>Gearless VVVF · IS 14665-1</td></tr>
+              </tbody>
+            </table>
+            <div class="spec__foot">
+              <button type="button" class="btn btn--gold" id="pdfBtn">Download PDF specification &amp; drawing</button>
+              <button type="button" class="btn btn--navy" id="threeDBtn">Request 3D elevator design</button>
+              <a class="btn btn--ghost" id="waBtn" href="https://wa.me/918925448131" target="_blank" rel="noopener noreferrer">Send spec on WhatsApp</a>
+            </div>
+          </div>
+
+          <p class="note">Indicative sizing only. The inner cabin envelope is derived from standard Tekton shaft allowances (185&nbsp;mm left and right for guide rails, counterweight and door pocket; 240&nbsp;mm front for the door assembly and 230&nbsp;mm rear clearance). Final dimensions, pit depth, headroom and rated load are confirmed on site by our design team under IS 14665-1 (2000).</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== lead capture modal ===== -->
+<div class="modal" id="leadModal" hidden>
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__head">
+      <h3 id="modalTitle">Enter your details to continue</h3>
+      <button type="button" class="icon-btn" data-close aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <form class="modal__body" id="leadForm">
+      <p class="modal__lede">Share your details and we will unlock your specification sheet and keep a record for your project file.</p>
+      <div class="fld"><label for="custName">Customer name *</label><input type="text" id="custName" required placeholder="Enter full name"></div>
+      <div class="fld"><label for="custMobile">Mobile number *</label><input type="tel" id="custMobile" required placeholder="10-digit mobile number" pattern="[0-9+ ]{10,15}"></div>
+      <div class="fld"><label for="custLocation">Location / city *</label><input type="text" id="custLocation" required placeholder="Enter city or location"></div>
+      <button type="submit" class="btn btn--gold" id="leadSubmit">Submit &amp; continue</button>
+    </form>
+
+    <div class="modal__body modal__body--ok" id="leadSuccess" hidden>
+      <div class="tick" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 13 4.5 4.5L19 7"/></svg>
+      </div>
+      <h4 id="okTitle">Your specification is ready</h4>
+      <p id="okText">Your details have been recorded. Download your customised layout below, or ask our engineers for the full 3D design.</p>
+      <button type="button" class="btn btn--gold" id="okDownload">Download PDF drawing</button>
+      <a class="btn btn--navy" id="ok3d" href="https://wa.me/918925448131" target="_blank" rel="noopener noreferrer">Request 3D design on WhatsApp</a>
+      <button type="button" class="btn btn--ghost" data-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <img class="logo__img logo__img--footer" src="./assets/logo-full-light.png" alt="Tekton Elevators — bringing horizons closer through precision technology" width="1200" height="351">
+        <p class="footer__tagline">Bringing horizons closer through precision technology.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul role="list">
+          <li><a href="./index.html#products">Home lifts</a></li>
+          <li><a href="./index.html#products">Passenger lifts</a></li>
+          <li><a href="./index.html#products">Hospital &amp; freight</a></li>
+          <li><a href="./index.html#products">Escalators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul role="list">
+          <li><a href="./index.html#about">About us</a></li>
+          <li><a href="./index.html#technology">Technology</a></li>
+          <li><a href="./index.html#service">Scope of service</a></li>
+          <li><a href="./index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="tel:+918925448131">+91 89254 48131</a></li>
+          <li><a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a></li>
+          <li><a href="https://www.tektonelevators.com" target="_blank" rel="noopener noreferrer">www.tektonelevators.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Tekton Elevators. All rights reserved.</span>
+      <span>IS 14665-1 (2000) compliant · Auto Rescue Device equipped · 24/7 AMC</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./app.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="./designer.js" defer></script>
+<script src="./chat-config.js" defer></script>
+<script src="./chat.js" defer></script>
+<script src="./index-ai.js"></script>
+</body>
+</html>

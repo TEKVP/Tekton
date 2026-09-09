@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+
+    <meta charset="UTF-8">
+        <!-- TEKTON AI ASSISTANT CSS -->
+
+    <style>
+
+      .float-ai-chat {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 99990;
+
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        height: 52px;
+        padding: 0 18px;
+
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 30px;
+
+        background: linear-gradient(
+          135deg,
+          #0b2346,
+          #07172e
+        );
+
+        color: #fff;
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .04em;
+
+        cursor: pointer;
+
+        box-shadow:
+          0 12px 35px rgba(0,0,0,.30);
+
+        transition:
+          transform .25s ease,
+          box-shadow .25s ease;
+      }
+
+      .float-ai-chat:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+          0 18px 45px rgba(0,0,0,.40);
+      }
+
+      .float-ai-chat:active {
+        transform: translateY(-1px);
+      }
+
+      .ai-chat-icon {
+        width: 30px;
+        height: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background: #fff;
+        color: #0b2346;
+
+        font-size: 16px;
+        font-weight: 900;
+      }
+
+      .ai-chat-text {
+        white-space: nowrap;
+      }
+
+      .ai-chat-status {
+        position: absolute;
+
+        top: 8px;
+        left: 29px;
+
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #52d889;
+
+        border: 2px solid #0b2346;
+      }
+
+      @media (max-width: 600px) {
+
+        .float-ai-chat {
+          right: 14px;
+          bottom: 14px;
+          height: 48px;
+          padding: 0 15px;
+        }
+
+        .ai-chat-icon {
+          width: 28px;
+          height: 28px;
+        }
+
+      }
+
+    </style>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tekton Elevators — Engineering Excellence in Vertical Mobility</title>
+<meta name="description" content="Tekton Elevators manufactures, installs and services custom home lifts, commercial passenger elevators, hospital and freight lifts and escalators across Tamil Nadu and Karnataka. IS 14665 compliant, IoT-monitored, AI predictive maintenance.">
+<meta property="og:title" content="Tekton Elevators — Engineering Excellence in Vertical Mobility">
+<meta property="og:description" content="Custom-designed elevators and escalators engineered for absolute safety, energy efficiency and seamless architectural integration.">
+<meta property="og:image" content="./assets/hero-atrium.webp">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./chat.css">
+<link rel="stylesheet" href="./luxury-responsive.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================================
+     TEKTON ELEVATORS — ULTIMATE LUXURY DESIGN SYSTEM (FIXED & VISIBLE)
+     ========================================================================== */
+  :root[data-theme="dark"] {
+    --bg-primary: #05070A;
+    --bg-secondary: #0A0E17;
+    --bg-surface: #101622;
+    --bg-surface-hover: #182030;
+    --gold-primary: #E5C158;
+    --gold-light: #F7E7A6;
+    --gold-dark: #B39132;
+    --gold-muted: rgba(229, 193, 88, 0.15);
+    --text-main: #E2E8F0;
+    --text-muted: #94A3B8;
+    --hero-heading: #FFFFFF;
+    --hero-lede: #CBD5E1;
+    --border-subtle: rgba(229, 193, 88, 0.15);
+    --border-hover: rgba(229, 193, 88, 0.4);
+    --shadow-luxury: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 35px rgba(229, 193, 88, 0.08);
+    --glow-gold: 0 0 30px rgba(229, 193, 88, 0.3);
+    --stat-bg: rgba(16, 22, 34, 0.7);
+    --stat-text: #94A3B8;
+  }
+
+  :root[data-theme="light"] {
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #EDF2F7;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #E2E8F0;
+    --gold-primary: #9A7B1C;
+    --gold-light: #735B12;
+    --gold-dark: #52400C;
+    --gold-muted: rgba(154, 123, 28, 0.12);
+    --text-main: #0F172A;
+    --text-muted: #475569;
+    --hero-heading: #0F172A;
+    --hero-lede: #1E293B;
+    --border-subtle: rgba(154, 123, 28, 0.25);
+    --border-hover: rgba(154, 123, 28, 0.6);
+    --shadow-luxury: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 35px rgba(154, 123, 28, 0.05);
+    --glow-gold: 0 0 30px rgba(154, 123, 28, 0.2);
+    --stat-bg: #FFFFFF;
+    --stat-text: #334155;
+  }
+
+  :root {
+    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    line-height: 1.7;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  p, .lede, .card__body p, .feat p, .panel p, .office address, .footer__tagline, .steps p, .why__item p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  h1, h2, h3, h4, .h-hero, .h-sec, .h-card {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--hero-heading);
+    transition: color 0.4s ease;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul, ol { list-style: none; }
+
+  .wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media(min-width: 768px) {
+    .wrap { padding: 0 2rem; }
+  }
+
+  /* Global Fixed Right-Side 3D Scroll Lift Model Widget (Fully Functional JS Scroll Sync) */
+  .global-lift-widget {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 998;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hover);
+    border-radius: 12px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    box-shadow: var(--shadow-luxury);
+    backdrop-filter: blur(10px);
+  }
+  .global-lift-shaft {
+    width: 60px;
+    height: 180px;
+    background: var(--bg-primary);
+    border: 2px solid var(--gold-primary);
+    margin: 0 auto 0.5rem auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  }
+  .global-lift-cabin {
+    width: 46px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-secondary) 100%);
+    border: 1.5px solid var(--gold-light);
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(229, 193, 88, 0.3);
+  }
+  .global-lift-doors {
+    width: 80%;
+    height: 80%;
+    background: var(--bg-primary);
+    border: 1px solid var(--gold-primary);
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .global-door-pane {
+    width: 50%;
+    height: 100%;
+    background: var(--bg-surface-hover);
+    border: 1px solid var(--gold-primary);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .global-lift-cabin.doors-open {
+    border-color: #34D399;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+  }
+  .global-lift-cabin.doors-open .global-lift-doors {
+    border-color: #34D399;
+  }
+  .global-lift-cabin.doors-open .global-door-pane {
+    border-color: #34D399;
+    background: rgba(52, 211, 153, 0.15);
+  }
+  .global-lift-cabin.doors-open .global-door-left {
+    transform: translateX(-100%);
+  }
+  .global-lift-cabin.doors-open .global-door-right {
+    transform: translateX(100%);
+  }
+
+  .global-lift-cabin.is-moving {
+    border-color: var(--moving-color, #38BDF8);
+    box-shadow: 0 0 20px var(--moving-glow, rgba(56, 189, 248, 0.6));
+  }
+  .global-lift-cabin.is-moving .global-lift-doors {
+    border-color: var(--moving-color, #38BDF8);
+  }
+  .global-lift-cabin.is-moving .global-door-pane {
+    border-color: var(--moving-color, #38BDF8);
+    background: var(--moving-bg, rgba(56, 189, 248, 0.15));
+    transform: translateX(0);
+  }
+
+  .global-lift-logo {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 7px;
+    color: #34D399;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    text-align: center;
+    pointer-events: none;
+  }
+  .global-lift-cabin.doors-open .global-lift-logo {
+    opacity: 1;
+  }
+  .global-lift-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+
+  /* Topbar */
+  .topbar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+  }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .topbar a { color: var(--gold-light); transition: color 0.3s; }
+  .topbar a:hover { color: var(--gold-primary); }
+
+  @media(max-width: 768px) {
+    .topbar .wrap { justify-content: center; text-align: center; }
+    .topbar__hide { display: none; }
+  }
+
+  /* ==========================================================================
+     INDEX PAGE HEADER & FOOTER OVERRIDES (ISOLATED & HIGH-CONTRAST)
+     ========================================================================== */
+
+  /* Header Overrides */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-primary);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem 0;
+  }
+  .header .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .logo__img { height: 35px; width: auto; display: block; max-width: 160px; }
+  
+  :root[data-theme="dark"] .logo__light { display: block; }
+  :root[data-theme="dark"] .logo__dark { display: none; }
+  :root[data-theme="light"] .logo__light { display: none; }
+  :root[data-theme="light"] .logo__dark { display: block; }
+
+  .nav { display: flex; gap: 2rem; align-items: center; }
+  .nav a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-main) !important;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold-primary);
+    transition: width 0.3s var(--transition-smooth);
+  }
+  .nav a:hover { color: var(--gold-light) !important; }
+  .nav a:hover::after { width: 100%; }
+
+  :root[data-theme="light"] .nav a {
+    color: #0F172A !important;
+  }
+  :root[data-theme="light"] .nav a:hover {
+    color: #9A7B1C !important;
+  }
+
+  .header__actions { display: flex; align-items: center; gap: 1rem; }
+  
+  .theme-toggle-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--gold-primary);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    flex-shrink: 0;
+  }
+  .theme-toggle-btn:hover {
+    border-color: var(--gold-primary);
+    box-shadow: var(--glow-gold);
+    transform: scale(1.08);
+  }
+  .theme-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.5s ease;
+  }
+  :root[data-theme="light"] .theme-toggle-btn svg {
+    transform: rotate(180deg);
+  }
+
+  .icon-btn { background: none; border: none; color: var(--text-main); cursor: pointer; display: none; z-index: 1002; }
+
+  /* Footer Overrides */
+  .footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    padding: 4rem 0 2rem 0;
+    color: var(--text-main);
+  }
+  @media(min-width: 768px) { .footer { padding: 6rem 0 3rem 0; } }
+  .footer__grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  @media(min-width: 768px) { .footer__grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; } }
+  @media(min-width: 1024px) { .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; } }
+  
+  .footer__tagline { margin-top: 1rem; font-size: 0.875rem; max-width: 350px; color: var(--text-muted); }
+  .footer h4 { color: var(--hero-heading) !important; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 700; }
+  .footer ul { display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer a { font-size: 0.875rem; color: var(--text-main) !important; font-weight: 500; text-decoration: none; transition: color 0.3s; }
+  .footer a:hover { color: var(--gold-primary) !important; text-decoration: underline; text-underline-offset: 4px; }
+  
+  :root[data-theme="light"] .footer {
+    background: #EDF2F7;
+    color: #0F172A;
+  }
+  :root[data-theme="light"] .footer h4 {
+    color: #0F172A !important;
+  }
+  :root[data-theme="light"] .footer a {
+    color: #1E293B !important;
+    font-weight: 600;
+  }
+  :root[data-theme="light"] .footer a:hover {
+    color: #9A7B1C !important;
+  }
+  :root[data-theme="light"] .footer__tagline {
+    color: #475569;
+  }
+
+  .footer__bottom { 
+    border-top: 1px solid var(--border-subtle); 
+    padding-top: 1.5rem; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.75rem; 
+    align-items: center; 
+    text-align: center;
+    font-size: 0.75rem; 
+    color: var(--text-muted);
+  }
+  @media(min-width: 768px) { 
+    .footer__bottom { flex-direction: row; justify-content: space-between; text-align: left; } 
+  }
+
+  /* Buttons */
+  .btn {
+    border-radius: 0px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0.85rem 1.75rem;
+    transition: all 0.4s var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+  .btn--gold {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+    color: #05070A;
+    border: none;
+    box-shadow: 0 4px 20px rgba(229, 193, 88, 0.3);
+  }
+  .btn--gold:hover {
+    background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+    box-shadow: var(--glow-gold);
+    transform: translateY(-2px);
+  }
+  .btn--onDark, .btn--ghost {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-hover);
+  }
+  .btn--onDark:hover, .btn--ghost:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-light);
+    background: rgba(229, 193, 88, 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* Eyebrow */
+  .eyebrow {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold-primary);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 5rem 0;
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  :root[data-theme="dark"] .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(5, 7, 10, 0.3) 0%, rgba(5, 7, 10, 0.88) 85%, var(--bg-primary) 100%),
+                linear-gradient(180deg, rgba(5, 7, 10, 0.6) 0%, transparent 40%, var(--bg-primary) 100%);
+  }
+  :root[data-theme="light"] .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(248, 250, 252, 0.8) 0%, rgba(248, 250, 252, 0.94) 85%, var(--bg-primary) 100%),
+                linear-gradient(180deg, rgba(248, 250, 252, 0.85) 0%, transparent 40%, var(--bg-primary) 100%);
+  }
+
+  .hero__inner { max-width: 800px; margin-left: max(1.5rem, calc((100vw - 1320px) / 2)); z-index: 1; padding-right: 1.5rem; }
+  
+  .h-hero {
+    font-size: clamp(2.25rem, 5vw, 5.25rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    color: var(--hero-heading);
+  }
+  .gold-italic {
+    font-style: italic;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .lede {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--hero-lede);
+    margin-bottom: 2rem;
+    max-width: 680px;
+    font-weight: 500;
+  }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 2.5rem; }
+  .hero__scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Stats Section */
+  .stats {
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1; }
+  
+  .stat-item {
+    background: var(--stat-bg);
+    border: 1.5px solid var(--item-border, rgba(229, 193, 88, 0.3));
+    border-radius: 12px;
+    padding: 2rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .stat-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--item-glow, #38BDF8);
+    box-shadow: 0 0 30px var(--item-shadow, rgba(56, 189, 248, 0.3));
+  }
+
+  .stat-item:nth-child(1) { --item-border: rgba(56, 189, 248, 0.4); --item-glow: #38BDF8; --item-shadow: rgba(56, 189, 248, 0.4); }
+  .stat-item:nth-child(2) { --item-border: rgba(168, 85, 247, 0.4); --item-glow: #A855F7; --item-shadow: rgba(168, 85, 247, 0.4); }
+  .stat-item:nth-child(3) { --item-border: rgba(52, 211, 153, 0.4); --item-glow: #34D399; --item-shadow: rgba(52, 211, 153, 0.4); }
+  .stat-item:nth-child(4) { --item-border: rgba(244, 63, 94, 0.4); --item-glow: #F43F5E; --item-shadow: rgba(244, 63, 94, 0.4); }
+
+  .stat__num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.25rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-item:nth-child(1) .stat__num { background-image: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%); }
+  .stat-item:nth-child(2) .stat__num { background-image: linear-gradient(135deg, #A855F7 0%, #7E22CE 100%); }
+  .stat-item:nth-child(3) .stat__num { background-image: linear-gradient(135deg, #10B981 0%, #047857 100%); }
+  .stat-item:nth-child(4) .stat__num { background-image: linear-gradient(135deg, #F43F5E 0%, #BE123C 100%); }
+
+  :root[data-theme="dark"] .stat-item:nth-child(1) .stat__num { background-image: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%); }
+  :root[data-theme="dark"] .stat-item:nth-child(2) .stat__num { background-image: linear-gradient(135deg, #D8B4FE 0%, #A855F7 100%); }
+  :root[data-theme="dark"] .stat-item:nth-child(3) .stat__num { background-image: linear-gradient(135deg, #6EE7B7 0%, #34D399 100%); }
+  :root[data-theme="dark"] .stat-item:nth-child(4) .stat__num { background-image: linear-gradient(135deg, #FDA4AF 0%, #F43F5E 100%); }
+
+  .stat__label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stat-text); font-weight: 700; }
+
+  /* Sections Layout */
+  section { padding: 5rem 0; }
+  @media(min-width: 768px) { section { padding: 7rem 0; } }
+
+  .section--tint { background: var(--bg-secondary); }
+  .section--dark { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+
+  .sec-head { max-width: 700px; margin-bottom: 3rem; }
+  @media(min-width: 768px) { .sec-head { margin-bottom: 4rem; } }
+  .h-sec { font-size: clamp(1.85rem, 3vw, 3rem); line-height: 1.15; font-weight: 700; margin-top: 0.5rem; color: var(--hero-heading); }
+
+  .split { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+  @media(min-width: 1024px) { .split { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+  .split__media img { width: 100%; height: auto; display: block; border: 1px solid var(--border-subtle); filter: brightness(0.9) contrast(1.05); }
+
+  .checklist { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .checklist li { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.9rem; color: var(--text-main); text-align: justify; }
+  @media(min-width: 768px) { .checklist li { font-size: 0.95rem; } }
+  .checklist svg { color: var(--gold-primary); flex-shrink: 0; margin-top: 4px; }
+  .checklist b { color: var(--hero-heading); }
+
+  .duo { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 4rem; }
+  @media(min-width: 768px) { .duo { grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 5rem; } }
+  .panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.5s var(--transition-smooth);
+  }
+  @media(min-width: 768px) { .panel { padding: 3rem; } }
+  .panel:hover { border-color: var(--gold-primary); box-shadow: var(--shadow-luxury); transform: translateY(-4px); }
+  .panel h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gold-light); }
+
+  /* Pullquote */
+  .pullquote-wrapper {
+    margin: 5rem auto 0 auto;
+    max-width: 900px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-hover);
+    padding: 3rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-luxury);
+    position: relative;
+    overflow: hidden;
+  }
+  @media(min-width: 768px) { .pullquote-wrapper { margin-top: 7rem; padding: 4rem 3rem; } }
+  .pullquote-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+  }
+  .pullquote {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+    line-height: 1.35;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--hero-heading) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .pullquote-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 700;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .pullquote-meta span { color: var(--border-hover); }
+
+  /* Products Cards */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+  @media(min-width: 768px) { .cards { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; } }
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    transition: all 0.5s var(--transition-smooth);
+  }
+  .card:hover { border-color: var(--gold-primary); box-shadow: var(--shadow-luxury); transform: translateY(-4px); }
+  .card__img { height: 260px; overflow: hidden; }
+  @media(min-width: 768px) { .card__img { height: 320px; } }
+  .card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--transition-smooth); filter: brightness(0.9) contrast(1.05); }
+  .card:hover .card__img img { transform: scale(1.04); }
+  .card__body { padding: 2rem; }
+  @media(min-width: 768px) { .card__body { padding: 2.5rem; } }
+  .h-card { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--hero-heading); }
+  @media(min-width: 768px) { .h-card { font-size: 1.75rem; margin-bottom: 1rem; } }
+  .card__body p { color: var(--text-main); margin-bottom: 1.25rem; font-size: 0.9rem; }
+  @media(min-width: 768px) { .card__body p { font-size: 0.95rem; margin-bottom: 1.5rem; } }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tags li {
+    background: var(--gold-muted);
+    color: var(--gold-light);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.75rem;
+  }
+
+  /* Technology Grid */
+  .grid-4 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media(min-width: 768px) { .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+  @media(min-width: 1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+  .feat {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    transition: all 0.4s ease;
+  }
+  @media(min-width: 768px) { .feat { padding: 2.5rem; } }
+  .feat:hover { border-color: var(--gold-primary); background: var(--bg-surface-hover); transform: translateY(-4px); }
+  .feat__ico { stroke: var(--gold-primary); width: 28px; height: 28px; margin-bottom: 1.25rem; }
+  .feat__num { font-family: 'Montserrat', sans-serif; color: var(--gold-primary); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+  .feat h3 { font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--hero-heading); }
+  .feat p { color: var(--text-main); font-size: 0.875rem; }
+
+  /* Modernization / Band */
+  .band { 
+    position: relative; 
+    padding: 8rem 0; 
+    overflow: hidden; 
+    background: var(--bg-secondary);
+  }
+  @media(min-width: 768px) { .band { padding: 12rem 0; } }
+  .band__media { position: absolute; inset: 0; z-index: -1; }
+  .band__media img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) contrast(1.1); }
+  .band__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(5, 7, 10, 0.4) 0%, rgba(5, 7, 10, 0.88) 90%);
+  }
+  
+  .band__card {
+    background: var(--bg-surface);
+    backdrop-filter: blur(30px);
+    border: 1.5px solid var(--gold-primary);
+    padding: 2.5rem 1.5rem;
+    max-width: 1040px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px rgba(229, 193, 88, 0.2), 0 30px 60px rgba(0, 0, 0, 0.9);
+    border-radius: 12px;
+    position: relative;
+    color: var(--text-main);
+  }
+  @media(min-width: 768px) { .band__card { padding: 5rem 4rem; } }
+  .band__card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary), var(--gold-light), var(--gold-primary), var(--gold-dark));
+  }
+  .band__card .h-sec { color: var(--hero-heading); }
+  .band__card .lede { color: var(--hero-lede); }
+
+  /* Single Reference Image Display */
+  .modernization-single-img-wrap {
+    position: relative;
+    width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2rem 0;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 0 25px rgba(229, 193, 88, 0.25), var(--shadow-luxury);
+    background: #000;
+  }
+  @media(min-width: 768px) { .modernization-single-img-wrap { max-height: 500px; margin: 3rem 0; } }
+  .modernization-single-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Scorecard Grid */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2.5rem 0 2rem 0;
+  }
+  @media(min-width: 768px) { .scorecard-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 3.5rem 0 2.5rem 0; } }
+  .scorecard-box {
+    background: var(--bg-primary);
+    border: 1.5px solid var(--gold-primary);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(229, 193, 88, 0.15), inset 0 0 10px rgba(229, 193, 88, 0.05);
+    transition: all 0.3s ease;
+  }
+  .scorecard-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(229, 193, 88, 0.3), inset 0 0 15px rgba(229, 193, 88, 0.1);
+  }
+  .scorecard-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.35rem;
+  }
+  .scorecard-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* Why Us */
+  .why { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media(min-width: 768px) { .why { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+  @media(min-width: 1024px) { .why { grid-template-columns: repeat(4, 1fr); } }
+  .why__item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    transition: all 0.4s;
+  }
+  @media(min-width: 768px) { .why__item { padding: 2.5rem; } }
+  .why__item:hover { border-color: var(--gold-primary); transform: translateY(-4px); box-shadow: var(--shadow-luxury); }
+  .why__item h3 { font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--gold-light); }
+  .why__item p { color: var(--text-main); font-size: 0.875rem; }
+
+  /* Steps */
+  .wrap--narrow { max-width: 900px; }
+  .steps { counter-reset: step; display: flex; flex-direction: column; gap: 1.5rem; }
+  @media(min-width: 768px) { .steps { gap: 2.5rem; } }
+  .steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.75rem 1.25rem;
+    transition: border-color 0.3s;
+  }
+  @media(min-width: 768px) { .steps li { grid-template-columns: 60px 1fr; gap: 2rem; padding: 2.5rem; } }
+  .steps li:hover { border-color: var(--gold-primary); }
+  .steps li::before {
+    content: "0" counter(step);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--gold-primary);
+  }
+  @media(min-width: 768px) { .steps li::before { font-size: 1.5rem; } }
+  .steps h3 { font-size: 1.25rem; margin-bottom: 0.4rem; color: var(--hero-heading); }
+  @media(min-width: 768px) { .steps h3 { font-size: 1.35rem; } }
+  .steps p { color: var(--text-main); font-size: 0.9rem; }
+
+  /* Designer Promo */
+  .promo {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 2.5rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    box-shadow: var(--shadow-luxury);
+  }
+  @media(min-width: 768px) { .promo { padding: 4rem; } }
+  @media(min-width: 1024px) { .promo { grid-template-columns: 1.2fr 1fr; padding: 5rem; gap: 4rem; } }
+  
+  .designer-3d-box {
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border: 1.5px solid var(--border-hover);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(229, 193, 88, 0.08);
+    overflow: hidden;
+  }
+  @media(min-width: 768px) { .designer-3d-box { padding: 2rem; } }
+  .designer-preview-img-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--gold-primary);
+    box-shadow: 0 0 20px rgba(229, 193, 88, 0.25);
+    background: #000;
+  }
+  .designer-preview-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+  @media(min-width: 768px) { .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 4rem; } }
+  @media(min-width: 1024px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .office {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s;
+  }
+  @media(min-width: 768px) { .office { padding: 3rem; } }
+  .office:hover { border-color: var(--gold-primary); box-shadow: var(--shadow-luxury); transform: translateY(-4px); }
+  
+  .office--wide { 
+    grid-column: 1; 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+  @media(min-width: 1024px) { 
+    .office--wide { grid-column: span 3; grid-template-columns: 1fr 2fr; align-items: center; } 
+  }
+
+  .office__tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold-primary);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .office h3 { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--hero-heading); }
+  .office address { font-style: normal; color: var(--text-main); font-size: 0.9rem; margin-bottom: 1.25rem; }
+  .office a { color: var(--gold-light); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .office a:hover { color: var(--gold-primary); text-decoration: underline; }
+  
+  .office__lines { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem; 
+    border-top: 1px solid var(--border-subtle); 
+    padding-top: 1.5rem; 
+  }
+  @media(min-width: 768px) { .office__lines { grid-template-columns: repeat(3, 1fr); } }
+  @media(min-width: 1024px) { 
+    .office__lines { border-top: none; border-left: 1px solid var(--border-subtle); padding-top: 0; padding-left: 3rem; } 
+  }
+  .office__lines div span { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.35rem; }
+
+  .cta-final {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media(min-width: 768px) { .cta-final { padding: 6rem; } }
+  .eyebrow--center { text-align: center; }
+  .cta-final p { max-width: 650px; margin: 1rem auto 2.5rem auto; color: var(--text-main); text-align: justify; text-justify: inter-word; }
+  .cta-final .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+  /* AI Assistant Chat Trigger Button */
+  .float-ai-chat {
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    z-index: 999;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+    color: #05070A;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 25px rgba(229, 193, 88, 0.4);
+    transition: all 0.3s;
+  }
+  .float-ai-chat:hover { transform: scale(1.05); box-shadow: var(--glow-gold); }
+
+  /* Mobile Navigation Drawer Overlay & Styles */
+  @media(max-width: 1023px) {
+    .icon-btn.nav-toggle { display: block; }
+    .global-lift-widget { display: none; }
+    
+    .nav {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 80%; max-width: 340px;
+      height: 100vh;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5rem 2rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -20px 0 50px rgba(0,0,0,0.5);
+      z-index: 1001;
+    }
+    .nav.is-open { right: 0; }
+    .nav a { font-size: 1.1rem; font-weight: 600; width: 100%; padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle); color: var(--hero-heading) !important; }
+    .nav a::after { display: none; }
+    
+    .nav-close {
+      display: block;
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--hero-heading);
+      cursor: pointer;
+    }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 1000;
+    }
+    .nav-overlay.is-active { opacity: 1; pointer-events: auto; }
+  }
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E2A52'/%3E%3Crect x='8' y='7' width='16' height='18' fill='none' stroke='%23D9A44F' stroke-width='2'/%3E%3Cpath d='M16 7v18' stroke='%23D9A44F' stroke-width='2'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Tekton Elevators","description":"Manufacturer and service provider of elevators, home lifts and escalators.","url":"https://www.tektonelevators.com","telephone":"+918925448131","email":"info@tektonelevators.com","address":{"@type":"PostalAddress","streetAddress":"No. 32, Kathiresan Kovil 3rd Street, Veeravanchi Nagar","addressLocality":"Kovilpatti","addressRegion":"Tamil Nadu","postalCode":"628501","addressCountry":"IN"},"areaServed":["Tamil Nadu","Karnataka"],"slogan":"Bringing Horizons Closer Through Precision Technology"}
+</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<aside class="global-lift-widget" aria-label="Interactive Lift Scroll Simulator">
+  <div class="global-lift-shaft">
+    <div class="global-lift-cabin" id="globalLiftCabin">
+      <div class="global-lift-doors">
+        <div class="global-door-pane global-door-left"></div>
+        <div class="global-door-pane global-door-right"></div>
+      </div>
+      <div class="global-lift-logo">TEKTON</div>
+    </div>
+  </div>
+  <span class="global-lift-label" id="globalLiftStatus">Moving</span>
+</aside>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Call support: <a href="tel:+918925448131">+91 89254 48131</a> &nbsp;/&nbsp; <a href="tel:+919500158530">95001 58530</a></span>
+    <span><b class="topbar__hide">Email &nbsp;:&nbsp;</b><a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a></span>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Tekton Elevators home">
+      <img class="logo__img logo__light" src="./assets/logo-lock-light.png" alt="Tekton Elevators" width="900" height="207">
+      <img class="logo__img logo__dark" src="./assets/logo-lock.png" alt="Tekton Elevators" width="900" height="207">
+    </a>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav" id="nav" aria-label="Main">
+      <button class="icon-btn nav-close" id="navClose" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#technology">Technology</a>
+      <a href="#service">Service</a>
+      <a href="./designer.html">Lift Designer</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <a class="btn btn--gold" href="#contact">Get a quote</a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero__media">
+      <img src="./assets/hero-atrium.webp" alt="Panoramic glass capsule elevator rising through a luxury high-rise atrium at dusk" width="1536" height="1024" fetchpriority="high">
+    </div>
+    <div class="wrap hero__inner">
+      <p class="eyebrow">Kovilpatti · Tenkasi · Chennai · Bengaluru</p>
+      <h1 class="h-hero">Engineering excellence in<br><span class="gold-italic">vertical mobility.</span></h1>
+      <p class="lede">Your unique specifications meet our high-precision engineering. We manufacture, install and service intelligent elevators built for absolute safety — and built for life.</p>
+      <div class="hero__cta">
+        <a class="btn btn--gold" href="#contact">Get a quote</a>
+        <a class="btn btn--onDark" href="#products">Explore products</a>
+      </div>
+      <p class="hero__scroll">
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 1v17M1 12l6 6 6-6"/></svg>
+        Safety · AI Precision · Innovation
+      </p>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Company at a glance">
+    <div class="wrap">
+      <div class="stats__grid">
+        <div class="stat-item">
+          <div class="stat__num">20+</div>
+          <div class="stat__label">Years of engineering</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat__num">300+</div>
+          <div class="stat__label">Installations delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat__num">100%</div>
+          <div class="stat__label">IS 14665 compliance</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat__num">24/7</div>
+          <div class="stat__label">AI telemetry monitoring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow">About Tekton</p>
+          <h2 class="h-sec">A premier manufacturer of state-of-the-art vertical transportation.</h2>
+          <p class="lede" style="margin-top:1.5rem">Backed by over two decades of engineering mastery, we deliver custom-designed elevators and escalators engineered for absolute safety, energy efficiency and smooth aesthetic integration into modern architecture.</p>
+          <ul class="checklist" role="list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>20+ years</b> of engineering mastery across residential, commercial and industrial projects</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>300+ successful installations</b> commissioned and maintained</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>100% compliance</b> with IS 14665 electric traction lift safety standards</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span><b>24/7 emergency rescue</b> with Auto Rescue Devices fitted as standard</span></li>
+          </ul>
+        </div>
+        <figure class="split__media split__media--framed reveal">
+          <img src="./assets/tech-traction.webp" alt="Close-up of a gearless permanent-magnet traction machine with steel ropes inside a machine-room-less shaft head" width="1536" height="1024" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="duo">
+        <div class="panel reveal">
+          <h3>Our mission</h3>
+          <p>To deliver next-generation vertical transportation systems powered by smart IoT telemetry and AI predictive maintenance. By prioritising engineering precision, strict safety standards and real-time remote monitoring, we guarantee maximum reliability and total client peace of mind.</p>
+        </div>
+        <div class="panel reveal">
+          <h3>Our vision</h3>
+          <p>To become the global leader in AI-driven, IoT-integrated vertical mobility — delivering world-class technology, zero-downtime reliability and uncompromised safety at accessible, market-leading value.</p>
+        </div>
+      </div>
+
+      <div class="pullquote-wrapper reveal">
+        <blockquote class="pullquote">
+          “Elevating architecture beyond horizons through autonomous intelligence and uncompromising precision.”
+        </blockquote>
+        <div class="pullquote-meta">
+          Safety <span>·</span> Precision <span>·</span> Innovation
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="section--tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Products</p>
+        <h2 class="h-sec">Smart and advanced elevator systems.</h2>
+        <p class="lede" style="margin-top:1.5rem">Every unit is engineered around your shaft, your traffic profile and your architecture — never around a catalogue.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__img"><img src="./assets/prod-home-lift.webp" alt="Champagne gold glass home lift installed in a modern villa interior" width="1024" height="1536" loading="lazy"></div>
+          <div class="card__body">
+            <h3 class="h-card">Residential & luxury home lifts</h3>
+            <p>Compact, gearless, machine room-less (MRL) elevators with panoramic glass cabins, designed for modern homes, villas and private residences.</p>
+            <ul class="tags" role="list"><li>MRL</li><li>Gearless</li><li>Panoramic glass</li></ul>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__img"><img src="./assets/prod-commercial.webp" alt="Bank of navy and stainless steel commercial passenger elevator doors in a corporate lobby" width="1536" height="1024" loading="lazy"></div>
+          <div class="card__body">
+            <h3 class="h-card">Commercial passenger lifts</h3>
+            <p>High-speed, high-capacity passenger elevators with smart VVVF energy-saving drives and AI-driven destination dispatching that minimises peak-hour wait times.</p>
+            <ul class="tags" role="list"><li>VVVF drive</li><li>AI dispatch</li><li>High speed</li></ul>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__img"><img src="./assets/prod-freight.webp" alt="Wide stainless steel hospital bed lift with open doors in a clean hospital corridor" width="1536" height="1024" loading="lazy"></div>
+          <div class="card__body">
+            <h3 class="h-card">Hospital & heavy-duty freight lifts</h3>
+            <p>Rugged material and goods elevators engineered specifically for factories, warehouses and hospital stretcher transport under continuous duty cycles.</p>
+            <ul class="tags" role="list"><li>Stretcher</li><li>Goods</li><li>Heavy duty</li></ul>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__img"><img src="./assets/prod-escalator.webp" alt="Pair of modern escalators with gold LED skirt lighting in a premium mall atrium" width="1536" height="1024" loading="lazy"></div>
+          <div class="card__body">
+            <h3 class="h-card">Escalators & moving walkways</h3>
+            <p>Heavy-duty, high-efficiency escalators and moving ramps engineered for continuous mobility in malls, airports and public transport hubs.</p>
+            <ul class="tags" role="list"><li>Moving ramps</li><li>High traffic</li><li>Energy saving</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="technology" class="section--dark">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Lifecycle engineering & smart technology</p>
+        <h2 class="h-sec">Intelligence built into every shaft.</h2>
+        <p class="lede" style="margin-top:1.5rem">From the first CAD line to the tenth year of service, your lift stays measured, monitored and predictable.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="feat reveal">
+          <svg class="feat__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 3v18"/><path d="M13 13h4v4h-4z"/></svg>
+          <p class="feat__num">01</p>
+          <h3>In-house custom CAD design</h3>
+          <p>Custom 2D and 3D shaft and cabin tailoring for exact site conditions — pit depth, headroom and architectural constraints resolved before fabrication.</p>
+        </div>
+        <div class="feat reveal">
+          <svg class="feat__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 9 5.2-.6 9-4 9-9V7z"/><path d="m8.5 12 2.5 2.5L16 9.5"/></svg>
+          <p class="feat__num">02</p>
+          <h3>Precision installation & IS compliance</h3>
+          <p>Government-licensed execution strictly under IS 14665-1 (2000) electric traction lift safety standards, with Auto Rescue Devices fitted as standard.</p>
+        </div>
+        <div class="feat reveal">
+          <svg class="feat__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 15a4 4 0 0 1 .9-7.9A6 6 0 0 1 17 7a4.5 4.5 0 0 1 1 8.9"/><path d="M12 12v9M9 18l3 3 3-3"/></svg>
+          <p class="feat__num">03</p>
+          <h3>IoT-connected remote telemetry</h3>
+          <p>Real-time 24/7 cloud monitoring of motor temperature, door cycles, weight sensors and voltage levels for proactive system health management.</p>
+        </div>
+        <div class="feat reveal">
+          <svg class="feat__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 17l4.5-5 3.5 3.5L21 5"/><path d="M15 5h6v6"/></svg>
+          <p class="feat__num">04</p>
+          <h3>AI predictive maintenance & AMC</h3>
+          <p>Machine-learning models that flag component wear before failure occurs, so annual maintenance contracts protect uptime instead of chasing breakdowns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band__media">
+      <img src="./assets/modernization-skyline.webp" alt="High-rise city skyline at dusk with warm lit windows" width="1536" height="1024" loading="lazy">
+    </div>
+    <div class="wrap">
+      <div class="band__card reveal">
+        <p class="eyebrow">Elevator modernization</p>
+        <h2 class="h-sec">Give an ageing lift a second, smarter life.</h2>
+        <p class="lede" style="margin-top:1.5rem">We transition ageing elevator layouts into elite, AI-driven, IoT-enabled smart transport systems — maximising asset lifespan and restoring full code compliance with minimal facility downtime.</p>
+        
+        <div class="modernization-single-img-wrap">
+          <img src="https://raw.githubusercontent.com/TEKVP/Customer-Entry-Form/main/OLD%20NEW%20LIFT.png" alt="Legacy Swing Door and New Lift Comparison Reference" loading="lazy">
+        </div>
+
+        <div class="scorecard-grid">
+          <div class="scorecard-box">
+            <div class="scorecard-val">100%</div>
+            <div class="scorecard-label">IS 14665 Compliance</div>
+          </div>
+          <div class="scorecard-box">
+            <div class="scorecard-val">24/7</div>
+            <div class="scorecard-label">IoT Cloud Telemetry</div>
+          </div>
+          <div class="scorecard-box">
+            <div class="scorecard-val">Zero</div>
+            <div class="scorecard-label">Downtime Risk</div>
+          </div>
+          <div class="scorecard-box">
+            <div class="scorecard-val">5 Days</div>
+            <div class="scorecard-label">Rapid Upgrade</div>
+          </div>
+        </div>
+
+        <ul class="checklist" role="list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span>Cloud AI eliminates dispatch errors and optimises traffic in real time</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span>IoT sensors link braking and governor systems for live safety verification</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span>Standard cars rebuilt into capsule glass or premium brass-gold interiors</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg><span>Legacy mechanical frameworks adapted for future scaling with zero business interruption</span></li>
+        </ul>
+        <div class="hero__cta" style="margin-top: 2.5rem;"><a class="btn btn--gold" href="#contact">Request a system audit</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Why choose us</p>
+        <h2 class="h-sec">Next-generation vertical mobility, delivered accountably.</h2>
+      </div>
+      <div class="why">
+        <div class="why__item reveal"><h3>20+ years experience</h3><p>Over two decades of engineering mastery delivering custom-tailored vertical transportation across Tamil Nadu and Karnataka.</p></div>
+        <div class="why__item reveal"><h3>IS 14665-1 quality assurance</h3><p>Government-licensed execution strictly compliant with national safety standards, equipped with Auto Rescue Devices (ARD).</p></div>
+        <div class="why__item reveal"><h3>AI & IoT innovation</h3><p>Real-time cloud telemetry and AI predictive diagnostics that detect component wear before breakdowns occur, ensuring zero downtime.</p></div>
+        <div class="why__item reveal"><h3>In-house CAD design</h3><p>Our design team engineers site-customised shaft layouts, pit dimensions and cabin interiors around your exact architectural constraints.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="service" class="section--tint">
+    <div class="wrap wrap--narrow">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Scope of service</p>
+        <h2 class="h-sec">Complete lifecycle support, one accountable partner.</h2>
+      </div>
+      <ol class="steps" role="list">
+        <li class="reveal"><div><h3>Consultation & site assessment</h3><p>Advanced site survey, traffic analysis and capacity planning, with optimised architectural blueprints for your building.</p></div></li>
+        <li class="reveal"><div><h3>3D design & approval</h3><p>Site-customised shaft layouts, pit dimensions and cabin interiors presented in 2D drawings and 3D visualisation before a single part is cut.</p></div></li>
+        <li class="reveal"><div><h3>Manufacture & precision installation</h3><p>Clean, modular physical installation executed under IS 14665-1, with documented safety commissioning and load testing.</p></div></li>
+        <li class="reveal"><div><h3>Preventive AMC</h3><p>Rigorous scheduled inspections and tailored Annual Maintenance Contracts that shield your mechanical assets and warranty position.</p></div></li>
+        <li class="reveal"><div><h3>24/7 emergency response</h3><p>Round-the-clock rescue squads backed by immediate technical spare-parts support tracks and remote telemetry diagnostics.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="designer">
+    <div class="wrap">
+      <div class="promo reveal">
+        <div>
+          <p class="eyebrow">Tekton Designer</p>
+          <h2 class="h-sec">Configure your shaft in under a minute.</h2>
+          <p class="lede" style="margin-top:1.5rem">Enter your shaft width and depth. Our smart configurator auto-matches the door type, derives the inner cabin envelope and returns the rated passenger capacity — then hands you a technical specification sheet to share with your architect.</p>
+          <div class="hero__cta">
+            <a class="btn btn--gold" href="./designer.html">Open the lift designer</a>
+          </div>
+        </div>
+        <div class="designer-3d-box" aria-hidden="true">
+          <div class="designer-preview-img-wrap">
+            <img src="https://raw.githubusercontent.com/TEKVP/Customer-Entry-Form/main/Design.png" alt="Tekton Lift Designer 3D Evaluation Model Preview" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section--tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Contact us</p>
+        <h2 class="h-sec">Offices - Tamil Nadu & Karnataka.</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="office reveal">
+          <span class="office__tag">Head office</span>
+          <h3>Kovilpatti</h3>
+          <address>No. 32, Kathiresan Kovil 3rd Street,<br>Veeravanchi Nagar, Kovilpatti,<br>Tuticorin District — 628 501,<br>Tamil Nadu.</address>
+          <a href="https://maps.app.goo.gl/AUzrDw5k5vk7qgNdA" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        </div>
+        <div class="office reveal">
+          <span class="office__tag">Branch office</span>
+          <h3>Tenkasi</h3>
+          <address>1/235-2, South Street,<br>Kadanganeri, Tenkasi,<br>Tamil Nadu — 627 854.</address>
+          <a href="https://maps.app.goo.gl/c25NY16sXG3fiwUZA" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        </div>
+        <div class="office reveal">
+          <span class="office__tag">Branch offices</span>
+          <h3>Chennai & Bengaluru</h3>
+          <address>Chennai, Tamil Nadu.<br>Bengaluru, Karnataka.<br><br>Project execution, service and AMC coverage across both metros.</address>
+          <a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a>
+        </div>
+        <div class="office office--wide reveal">
+          <div>
+            <span class="office__tag">Direct lines</span>
+            <h3>Talk to an engineer</h3>
+          </div>
+          <div class="office__lines">
+            <div><span>Sales & enquiry</span><a href="tel:+918925448131">+91 89254 48131</a></div>
+            <div><span>Service & rescue</span><a href="tel:+919500158530">+91 95001 58530</a></div>
+            <div><span>Email</span><a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-final reveal">
+        <p class="eyebrow eyebrow--center">Engineering database channel</p>
+        <h2 class="h-sec">Ready to elevate your project?</h2>
+        <p>Share your loading blueprints or site conditions and we will return accurate project execution models and a tailored AMC price assessment.</p>
+        <div class="row">
+          <a class="btn btn--gold" href="mailto:info@tektonelevators.com?subject=Project%20enquiry%20%E2%80%94%20Tekton%20Elevators">Email your requirement</a>
+          <a class="btn btn--onDark" href="https://wa.me/918925448131" target="_blank" rel="noopener noreferrer">WhatsApp consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <img class="logo__img logo__light" src="./assets/logo-full-light.png" alt="Tekton Elevators Logo" style="height: 50px;">
+        <img class="logo__img logo__dark" src="./assets/logo-full.png" alt="Tekton Elevators Logo" style="height: 50px;">
+        <p class="footer__tagline">Bringing horizons closer through precision technology.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <ul role="list">
+          <li><a href="#products">Home lifts</a></li>
+          <li><a href="#products">Passenger lifts</a></li>
+          <li><a href="#products">Hospital & freight</a></li>
+          <li><a href="#products">Escalators</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul role="list">
+          <li><a href="#about">About us</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#service">Scope of service</a></li>
+          <li><a href="./designer.html">Lift designer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul role="list">
+          <li><a href="tel:+918925448131">+91 89254 48131</a></li>
+          <li><a href="tel:+919500158530">+91 95001 58530</a></li>
+          <li><a href="mailto:info@tektonelevators.com">info@tektonelevators.com</a></li>
+          <li><a href="https://www.tektonelevators.com" target="_blank" rel="noopener noreferrer">www.tektonelevators.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Tekton Elevators. All rights reserved.</span>
+      <span>Precision Engineering · Intelligent Mobility · Trusted Performance</span>
+    </div>
+  </div>
+</footer>
+
+
+<script
+  src="./app.js"
+  defer
+></script>
+
+<script
+  src="./chat-config.js?v=20260909-14"
+  defer
+></script>
+
+<script
+  src="./chat.js?v=20260909-14"
+  defer
+></script>
+<script>
+  // Default Dark Theme Controller
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const htmlRoot = document.documentElement;
+
+  // 1. Check if user previously saved a theme preference. If not, default to 'dark'
+  const savedTheme = localStorage.getItem('tekton_theme') || 'dark';
+  
+  // 2. Set the data-theme attribute on <html> element
+  htmlRoot.setAttribute('data-theme', savedTheme);
+
+  // 3. Toggle theme on button click
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlRoot.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    htmlRoot.setAttribute('data-theme', newTheme);
+    localStorage.setItem('tekton_theme', newTheme);
+  });
+
+  // Mobile Navigation Drawer Controller
+  const navToggle = document.getElementById('navToggle');
+  const navClose = document.getElementById('navClose');
+  const nav = document.getElementById('nav');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openMenu() {
+    nav.classList.add('is-open');
+    navOverlay.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    nav.classList.remove('is-open');
+    navOverlay.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+
+  if (navToggle) navToggle.addEventListener('click', openMenu);
+  if (navClose) navClose.addEventListener('click', closeMenu);
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Fixed Global Lift Model Scroll Physics Script
+  const globalLiftCabin = document.getElementById('globalLiftCabin');
+  const globalLiftStatus = document.getElementById('globalLiftStatus');
+  let globalScrollTimeout;
+
+  const movingColors = [
+    { color: '#38BDF8', glow: 'rgba(56, 189, 248, 0.6)', bg: 'rgba(56, 189, 248, 0.15)' },
+    { color: '#A855F7', glow: 'rgba(168, 85, 247, 0.6)', bg: 'rgba(168, 85, 247, 0.15)' },
+    { color: '#F43F5E', glow: 'rgba(244, 63, 94, 0.6)', bg: 'rgba(244, 63, 94, 0.15)' },
+    { color: '#FB923C', glow: 'rgba(251, 146, 60, 0.6)', bg: 'rgba(251, 146, 60, 0.15)' }
+  ];
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return;
+
+    const scrollFraction = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    
+    // Max movement range inside 180px shaft minus cabin height (55px) = ~115px
+    const translateY = scrollFraction * 115;
+    globalLiftCabin.style.transform = `translateY(${translateY}px)`;
+    
+    const colorIndex = Math.min(
+      Math.floor(scrollFraction * movingColors.length),
+      movingColors.length - 1
+    );
+    const activeMovingStyle = movingColors[colorIndex];
+
+    globalLiftCabin.style.setProperty('--moving-color', activeMovingStyle.color);
+    globalLiftCabin.style.setProperty('--moving-glow', activeMovingStyle.glow);
+    globalLiftCabin.style.setProperty('--moving-bg', activeMovingStyle.bg);
+    
+    globalLiftCabin.classList.remove('doors-open');
+    globalLiftCabin.classList.add('is-moving');
+    globalLiftStatus.textContent = "Moving";
+
+    clearTimeout(globalScrollTimeout);
+    globalScrollTimeout = setTimeout(() => {
+      globalLiftCabin.classList.remove('is-moving');
+      globalLiftCabin.classList.add('doors-open');
+      globalLiftStatus.textContent = "Open";
+    }, 120);
+  });
+</script>
+<!-- Floating AI Assistant Launcher & Lift Shaft Modal -->
+<!-- =========================================================
+     <!-- =========================================================
+     TEKTON AI ASSISTANT
+     ========================================================= -->
+<div class="ai-elevator-widget">
+
+  <!-- GOLD AI BUTTON -->
+  <button
+    class="ai-fab-btn"
+    id="aiFabBtn"
+    type="button"
+    aria-label="Open Tekton Executive AI Assistant"
+  >
+    <span class="ai-fab-icon">✦</span>
+    <span class="ai-fab-text">ASK TEKTON AI</span>
+  </button>
+
+  <!-- AI LIFT -->
+  <div
+    class="ai-lift-modal"
+    id="aiLiftModal"
+    aria-hidden="true"
+  >
+
+    <div class="ai-lift-shaft">
+
+      <!-- CABIN INTERIOR -->
+      <div class="ai-cabin-interior">
+
+        <div class="ai-cabin-glow"></div>
+
+        <!-- YOUR TEKTON LOGO BEHIND THE CLOSED DOORS -->
+        <div class="ai-cabin-logo">
+          <img
+            src="./assets/logo-lock-light.png"
+            alt="Tekton Elevators"
+          >
+        </div>
+
+        <!-- CHAT CONTENT -->
+        <div class="ai-chat-content">
+
+          <header class="ai-chat-header">
+
+            <div class="ai-brand-title">
+
+              <span class="status-indicator"></span>
+
+              <strong>TEKTON ELEVATORS</strong>
+
+              <small>
+                Tekton Assist · Elevator Advisor
+              </small>
+
+            </div>
+
+            <button
+              class="ai-chat-close"
+              id="aiChatClose"
+              type="button"
+              aria-label="Close Tekton AI"
+            >
+              ×
+            </button>
+
+          </header>
+
+          <div
+            class="ai-chat-log"
+            id="aiChatLog"
+          ></div>
+
+          <form
+            class="ai-chat-form"
+            id="aiChatForm"
+            autocomplete="off"
+          >
+
+            <input
+              id="aiChatInput"
+              type="text"
+              placeholder="Type your question..."
+              autocomplete="off"
+            >
+
+            <button
+              id="aiChatSend"
+              type="submit"
+            >
+              SEND
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <!-- CLOSED LIFT DOORS -->
+      <div class="ai-lift-doors">
+
+        <div class="ai-door-pane ai-door-left">
+          <div class="door-edge"></div>
+        </div>
+
+        <div class="ai-door-pane ai-door-right">
+          <div class="door-edge"></div>
+        </div>
+
+        <!-- TEKTON LOGO ON CLOSED DOORS -->
+        <div class="ai-door-logo">
+          <img
+            src="./assets/logo-lock-light.png"
+            alt="Tekton"
+          >
+        </div>
+
+        <div class="ai-door-center-line"></div>
+
+      </div>
+</div>
+</body>
+</html>
