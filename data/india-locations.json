@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "country": "India",
+  "locations": [
+    {
+      "name": "Chennai",
+      "type": "city",
+      "district": "Chennai",
+      "state": "Tamil Nadu",
+      "aliases": [
+        "Madras"
+      ]
+    },
+    {
+      "name": "Sivakasi",
+      "type": "municipality",
+      "district": "Virudhunagar",
+      "state": "Tamil Nadu",
+      "aliases": [
+        "Sivakasi Municipality"
+      ]
+    },
+    {
+      "name": "Kovilpatti",
+      "type": "municipality",
+      "district": "Thoothukudi",
+      "state": "Tamil Nadu",
+      "aliases": [
+        "Kovilpatti Municipality"
+      ]
+    },
+    {
+      "name": "Tenkasi",
+      "type": "municipality",
+      "district": "Tenkasi",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Madurai",
+      "type": "city",
+      "district": "Madurai",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Coimbatore",
+      "type": "city",
+      "district": "Coimbatore",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Tirunelveli",
+      "type": "city",
+      "district": "Tirunelveli",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Thoothukudi",
+      "type": "city",
+      "district": "Thoothukudi",
+      "state": "Tamil Nadu",
+      "aliases": [
+        "Tuticorin"
+      ]
+    },
+    {
+      "name": "Bengaluru",
+      "type": "city",
+      "district": "Bengaluru Urban",
+      "state": "Karnataka",
+      "aliases": [
+        "Bangalore"
+      ]
+    },
+    {
+      "name": "Salem",
+      "type": "city",
+      "district": "Salem",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Erode",
+      "type": "city",
+      "district": "Erode",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Tiruchirappalli",
+      "type": "city",
+      "district": "Tiruchirappalli",
+      "state": "Tamil Nadu",
+      "aliases": [
+        "Trichy"
+      ]
+    },
+    {
+      "name": "Nagercoil",
+      "type": "city",
+      "district": "Kanniyakumari",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Dindigul",
+      "type": "city",
+      "district": "Dindigul",
+      "state": "Tamil Nadu",
+      "aliases": []
+    },
+    {
+      "name": "Thanjavur",
+      "type": "city",
+      "district": "Thanjavur",
+      "state": "Tamil Nadu",
+      "aliases": []
+    }
+  ]
+}

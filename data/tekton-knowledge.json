@@ -1,0 +1,215 @@
+{
+  "company": {
+    "name": "Tekton Elevators",
+    "website": "www.tektonelevators.com",
+    "experience": "20+ years of engineering experience",
+    "installations": "300+ installations"
+  },
+
+  "contact": {
+    "sales": "+91 89254 48131",
+    "service": "+91 95001 58530",
+    "email": "info@tektonelevators.com"
+  },
+
+  "locations": [
+    "Kovilpatti",
+    "Tenkasi",
+    "Chennai",
+    "Bengaluru"
+  ],
+
+  "products": [
+    "Residential and luxury home lifts",
+    "Commercial passenger lifts",
+    "Hospital and stretcher lifts",
+    "Goods and freight lifts",
+    "Escalators and moving walkways"
+  ],
+
+  "technologies": [
+    "Machine-room-less elevators",
+    "Gearless systems",
+    "VVVF drives",
+    "IoT condition monitoring",
+    "Predictive maintenance",
+    "2D and 3D shaft design"
+  ],
+
+  "services": [
+    "Consultation",
+    "Site assessment",
+    "2D and 3D lift design",
+    "Manufacturing",
+    "Installation",
+    "Commissioning",
+    "Preventive AMC",
+    "Emergency support",
+    "Modernisation",
+    "Retrofitting"
+  ],
+
+  "safety": {
+    "standard": "IS 14665-1 related electric traction lift guidance",
+    "ard": "Auto Rescue Device equipped systems",
+    "emergency": "For a lift emergency, call Tekton service at +91 89254 48131 immediately and do not force the lift doors open."
+  },
+
+  "design": {
+    "shaftPlanningRule": "The website currently states a design-team planning rule where usable cabin width is the clear shaft width minus 370 mm, and cabin depth is the clear shaft depth minus 470 mm.",
+    "doorOptions": "The website currently states centre-opening or two-panel side-opening doors from 600 mm to 1200 mm.",
+    "designer": "Tekton provides a Lift Designer on the website for shaft and cabin planning."
+  },
+
+  "modernisation": {
+    "description": "Tekton provides lift modernisation and retrofitting for existing systems."
+  },
+
+  "quotation": {
+    "rule": "Quotation depends on lift type, capacity, number of stops, shaft dimensions, finishes, travel and site conditions.",
+    "process": [
+      "Enquiry",
+      "Free site survey",
+      "Engineering drawings and quotation",
+      "Fabrication",
+      "Installation and commissioning",
+      "Handover with AMC"
+    ]
+  },
+
+  "faq": [
+    {
+      "id": "home-lift",
+      "keywords": [
+        "home lift",
+        "home elevator",
+        "villa lift",
+        "residential lift"
+      ],
+      "answer": "Yes. Tekton provides residential and luxury home lifts. The suitable configuration depends on the available shaft, number of stops and site conditions."
+    },
+
+    {
+      "id": "passenger-lift",
+      "keywords": [
+        "passenger lift",
+        "passenger elevator"
+      ],
+      "answer": "Tekton provides commercial passenger elevators. The final configuration depends on capacity, travel, traffic and site conditions."
+    },
+
+    {
+      "id": "hospital-lift",
+      "keywords": [
+        "hospital lift",
+        "stretcher lift",
+        "bed lift"
+      ],
+      "answer": "Tekton provides hospital and stretcher lift solutions. The final cabin and door arrangement depends on the project requirement."
+    },
+
+    {
+      "id": "goods-lift",
+      "keywords": [
+        "goods lift",
+        "freight lift",
+        "material lift"
+      ],
+      "answer": "Tekton provides goods and heavy-duty freight lift solutions. Capacity and configuration depend on the intended load and site conditions."
+    },
+
+    {
+      "id": "mrl",
+      "keywords": [
+        "mrl",
+        "machine room less",
+        "machine-room-less"
+      ],
+      "answer": "Tekton provides machine-room-less lift configurations. The final arrangement depends on capacity, travel and site conditions."
+    },
+
+    {
+      "id": "amc",
+      "keywords": [
+        "amc",
+        "annual maintenance",
+        "maintenance contract"
+      ],
+      "answer": "Tekton provides preventive Annual Maintenance Contracts and emergency support. The exact AMC scope depends on the installed lift and service requirement."
+    },
+
+    {
+      "id": "safety",
+      "keywords": [
+        "safety",
+        "lift safety",
+        "safe lift"
+      ],
+      "answer": "Safety is a core part of Tekton engineering. The website states IS 14665-1 related electric traction lift compliance and Auto Rescue Device-equipped systems."
+    },
+
+    {
+      "id": "shaft",
+      "keywords": [
+        "shaft size",
+        "shaft dimension",
+        "shaft width",
+        "shaft depth"
+      ],
+      "answer": "Shaft requirements depend on the lift capacity, cabin, door arrangement and overall configuration. Tekton can prepare a site-specific design from the available shaft."
+    },
+
+    {
+      "id": "capacity",
+      "keywords": [
+        "capacity",
+        "passenger capacity",
+        "how many people"
+      ],
+      "answer": "Lift capacity depends on the intended use, cabin size, shaft conditions and project requirements."
+    },
+
+    {
+      "id": "doors",
+      "keywords": [
+        "door size",
+        "door width",
+        "lift door",
+        "door opening"
+      ],
+      "answer": "Tekton uses centre-opening or two-panel side-opening door arrangements. The website currently states door options from 600 mm to 1200 mm, but the final door size depends on the selected lift configuration."
+    },
+
+    {
+      "id": "modernisation",
+      "keywords": [
+        "modernisation",
+        "modernization",
+        "retrofit",
+        "old lift",
+        "upgrade existing lift"
+      ],
+      "answer": "Tekton provides lift modernisation and retrofitting for existing systems. The existing lift and site are assessed before preparing the engineering proposal."
+    },
+
+    {
+      "id": "experience",
+      "keywords": [
+        "experience",
+        "years experience",
+        "how many years"
+      ],
+      "answer": "Tekton Elevators has over 20 years of engineering experience and has delivered 300+ installations."
+    },
+
+    {
+      "id": "contact",
+      "keywords": [
+        "phone number",
+        "contact number",
+        "contact details"
+      ],
+      "answer": "You can contact Tekton Elevators at +91 89254 48131 or +91 95001 58530."
+    }
+  ]
+}
