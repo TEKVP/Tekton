@@ -161,8 +161,8 @@
   canvas.width = Math.round(CW * dpr);
   canvas.height = Math.round(CH * dpr);
 
-  canvas.style.width = '100%';
-  canvas.style.height = 'auto';
+  canvas.style.width = CW + 'px';
+  canvas.style.height = CH + 'px';
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
