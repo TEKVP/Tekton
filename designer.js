@@ -148,23 +148,37 @@
 
   function sizeCanvas() {
   var box = canvas.parentElement.getBoundingClientRect();
-  var available = Math.max(280, Math.round(box.width));
 
-  /* Responsive canvas for phone, tablet and desktop */
-  CW = available;
+  CW = Math.max(320, Math.round(box.width));
+  CH = Math.round(
+    Math.min(
+      700,
+      Math.max(
+        420,
+        CW * 0.72
+      )
+    )
+  );
 
-  var ratio = CW < 480 ? 0.92 : (CW < 900 ? 0.78 : 0.72);
-  CH = Math.round(Math.min(700, Math.max(390, CW * ratio)));
+  var dpr = Math.min(
+    window.devicePixelRatio || 1,
+    2
+  );
 
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-  canvas.width = Math.round(CW * dpr);
-  canvas.height = Math.round(CH * dpr);
+  canvas.width = CW * dpr;
+  canvas.height = CH * dpr;
 
   canvas.style.width = CW + 'px';
   canvas.style.height = CH + 'px';
 
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
 }
 
   function line(x1, y1, x2, y2, color, w, dash) {
