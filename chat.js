@@ -533,63 +533,66 @@
     }
 
     function handleMaintenance(text) {
-      var value = normalise(text);
+  var value = normalise(text);
 
-      if (value === '0') {
-        showMainMenu();
-        return;
-      }
+  if (value === '0' || value.indexOf('0. ') === 0) {
+    showMainMenu();
+    return;
+  }
 
-      if (value === '1') {
-        appendMessage(
-          'bot',
-          'Tekton provides preventive maintenance and Annual Maintenance Contract support. The exact AMC scope depends on the installed lift and service requirement.'
-        );
-        return;
-      }
+  if (value === '1' || value.indexOf('1. amc') === 0) {
+    appendMessage(
+      'bot',
+      'Tekton provides preventive maintenance and Annual Maintenance Contract support. The exact AMC scope depends on the installed lift and service requirement.'
+    );
+    return;
+  }
 
-      if (value === '2') {
-        appendMessage(
-          'bot',
-          'Preventive maintenance is planned around the installed lift, operating conditions and service requirements.'
-        );
-        return;
-      }
+  if (value === '2' || value.indexOf('2. preventive maintenance') === 0) {
+    appendMessage(
+      'bot',
+      'Preventive maintenance is planned around the installed lift, operating conditions and service requirements.'
+    );
+    return;
+  }
 
-      if (value === '3') {
-        appendMessage(
-          'bot',
-          'For emergency service, please contact Tekton at ' +
-          (config.servicePhoneDisplay || '+91 95001 58530') +
-          '.'
-        );
-        return;
-      }
+  if (value === '3' || value.indexOf('3. emergency service') === 0) {
+    appendMessage(
+      'bot',
+      'For emergency service, please contact Tekton at ' +
+      (config.servicePhoneDisplay || '+91 95001 58530') +
+      ' immediately. Do not force the lift doors open.'
+    );
+    return;
+  }
 
-      if (value === '4') {
-        appendMessage(
-          'bot',
-          'Tekton can assess and support existing lift systems. The recommended service depends on the existing equipment and site condition.'
-        );
-        return;
-      }
+  if (value === '4' || value.indexOf('4. existing lift support') === 0) {
+    appendMessage(
+      'bot',
+      'Tekton can assess and support existing lift systems. The recommended service depends on the existing equipment and site condition.'
+    );
+    return;
+  }
 
-      if (value === '5') {
-        appendMessage(
-          'bot',
-          'Tekton provides lift modernisation and retrofit support after assessment of the existing lift and site conditions.'
-        );
-        return;
-      }
+  if (
+    value === '5' ||
+    value.indexOf('5. modernisation') === 0 ||
+    value.indexOf('5. modernization') === 0
+  ) {
+    appendMessage(
+      'bot',
+      'Tekton provides lift modernisation and retrofit support after assessment of the existing lift and site conditions.'
+    );
+    return;
+  }
 
-      appendMessage(
-        'bot',
-        'Please choose one of the Maintenance / AMC options.'
-      );
+  appendMessage(
+    'bot',
+    'Please choose one of the Maintenance / AMC options.'
+  );
 
-      showMaintenanceMenu();
-    }
-
+  showMaintenanceMenu();
+}
     function showContact() {
       state = 'contact';
 
