@@ -238,6 +238,11 @@ var scale = Math.min(
   availH / st.shaftD
 );
 
+var sw = st.shaftW * scale;
+var sd = st.shaftD * scale;
+
+var x0 = padL + (availW - sw) / 2;
+var y0 = padT + (availH - sd) / 2;
     /* masonry wall band */
     var wall = 9;
     ctx.save();
