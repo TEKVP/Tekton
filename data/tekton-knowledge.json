@@ -1,9 +1,19 @@
 {
+  "version": "2026-09-14",
+  "title": "Tekton Elevators — Customer, Product & Safety Knowledge",
+  "purpose": "Customer-facing knowledge for Tekton Elevators. Product-specific engineering values, final designs, statutory approvals and site requirements must be confirmed by Tekton engineering for each project.",
+
   "company": {
     "name": "Tekton Elevators",
     "website": "www.tektonelevators.com",
     "experience": "20+ years of engineering experience",
-    "installations": "300+ installations"
+    "installations": "300+ installations",
+    "locations": [
+      "Kovilpatti",
+      "Tenkasi",
+      "Chennai",
+      "Bengaluru"
+    ]
   },
 
   "contact": {
@@ -12,20 +22,22 @@
     "email": "info@tektonelevators.com"
   },
 
-  "locations": [
-    "Kovilpatti",
-    "Tenkasi",
-    "Chennai",
-    "Bengaluru"
-  ],
+  "safety": {
+    "disclaimer": "IS 14665 is a technical safety standard and is not by itself a certification for a specific Tekton installation. Final design, statutory approvals and site conditions must be verified by Tekton engineering and the applicable authority.",
+    "standard_reference": "IS 14665 (Part 3/Sections 1 & 2): 2000",
+    "standard_scope": "Electric traction lifts — safety rules for passenger and goods lifts, and service lifts.",
+    "ard": "Tekton provides Auto Rescue Device-equipped systems where applicable.",
+    "emergency": "For a lift emergency, contact Tekton service immediately at +91 89254 48131. Do not force the lift doors open."
+  },
 
-  "products": [
-    "Residential and luxury home lifts",
-    "Commercial passenger lifts",
-    "Hospital and stretcher lifts",
-    "Goods and freight lifts",
-    "Escalators and moving walkways"
-  ],
+  "products": {
+    "Home / Villa Lift": "Residential and luxury home lift solutions for villas and private residences. Final selection depends on capacity, travel, number of stops, shaft dimensions, door arrangement and site conditions.",
+    "Passenger Lift": "Passenger elevator solutions for residential and commercial buildings. Final configuration depends on traffic, capacity, travel, speed, shaft dimensions and site conditions.",
+    "Hospital / Stretcher Lift": "Hospital and stretcher lift solutions. Cabin dimensions, loading, door arrangement, travel and healthcare site requirements are coordinated as a project-specific engineering package.",
+    "Goods / Freight Lift": "Goods and freight lift solutions for material movement. Rated load, car area, loading conditions, guide arrangements and duty requirements must be engineered for the intended use.",
+    "Escalators / Moving Walkways": "Tekton provides escalators and moving walkway solutions.",
+    "Modernisation": "Modernisation and retrofitting solutions for existing lifts after assessment of the existing machine, controller, doors, safety devices, car, shaft and site condition."
+  },
 
   "technologies": [
     "Machine-room-less elevators",
@@ -49,24 +61,23 @@
     "Retrofitting"
   ],
 
-  "safety": {
-    "standard": "IS 14665-1 related electric traction lift guidance",
-    "ard": "Auto Rescue Device equipped systems",
-    "emergency": "For a lift emergency, call Tekton service at +91 89254 48131 immediately and do not force the lift doors open."
-  },
-
   "design": {
-    "shaftPlanningRule": "The website currently states a design-team planning rule where usable cabin width is the clear shaft width minus 370 mm, and cabin depth is the clear shaft depth minus 470 mm.",
-    "doorOptions": "The website currently states centre-opening or two-panel side-opening doors from 600 mm to 1200 mm.",
-    "designer": "Tekton provides a Lift Designer on the website for shaft and cabin planning."
-  },
-
-  "modernisation": {
-    "description": "Tekton provides lift modernisation and retrofitting for existing systems."
+    "website_planning_rule": "The website currently states a design-team planning rule where usable cabin width is the clear shaft width minus 370 mm, and cabin depth is the clear shaft depth minus 470 mm. These values are planning guidance and must not be treated as universal engineering requirements.",
+    "door_options": "The website currently states centre-opening or two-panel side-opening doors from 600 mm to 1200 mm. Final door size depends on the selected configuration.",
+    "designer": "Tekton provides a Lift Designer on the website for shaft and cabin planning.",
+    "engineering_note": "Final shaft, cabin, door, capacity and equipment dimensions must be confirmed by Tekton engineering."
   },
 
   "quotation": {
-    "rule": "Quotation depends on lift type, capacity, number of stops, shaft dimensions, finishes, travel and site conditions.",
+    "depends_on": [
+      "Lift type",
+      "Capacity",
+      "Number of stops",
+      "Shaft dimensions",
+      "Travel",
+      "Finishes",
+      "Site conditions"
+    ],
     "process": [
       "Enquiry",
       "Free site survey",
@@ -77,139 +88,104 @@
     ]
   },
 
+  "standards": {
+    "IS_14665": {
+      "name": "IS 14665 (Part 3/Sections 1 & 2): 2000",
+      "important_points": [
+        "Passenger and goods lifts are covered in Section 1; service lifts are covered in Section 2.",
+        "The standard states a factor of safety of not less than five for any part of the lift, with higher values where specified.",
+        "Passenger rated load is related to net inside car area.",
+        "A conspicuous load plate is required; passenger lifts state rated load in persons and kilograms.",
+        "Electric lifts require upper and lower terminal stopping provisions and final limit protection as specified.",
+        "Automatic lifts must not start unless the landing doors and car door are closed.",
+        "The amended Section 1 includes emergency electrical operation provisions, with the stated car speed limit during that operation of 0.7 m/s.",
+        "For electronic motor control, the cited table lists a maximum levelling error of 12 mm.",
+        "Site testing includes insulation resistance, earthing, motor, brake, control, door-lock, limit-switch, rated-load, contract-speed and safety-gear tests.",
+        "The Section 2 service-lift definition describes a materials-only lift with maximum rated capacity of 250 kg, net platform area of 1 m² and total inside height of 1.25 m."
+      ],
+      "selected_passenger_load_examples": [
+        {"kg": 272, "maximum_car_area_m2": 0.77},
+        {"kg": 340, "maximum_car_area_m2": 0.95},
+        {"kg": 408, "maximum_car_area_m2": 1.12},
+        {"kg": 476, "maximum_car_area_m2": 1.28},
+        {"kg": 544, "maximum_car_area_m2": 1.45},
+        {"kg": 612, "maximum_car_area_m2": 1.60},
+        {"kg": 680, "maximum_car_area_m2": 1.76},
+        {"kg": 748, "maximum_car_area_m2": 1.91},
+        {"kg": 816, "maximum_car_area_m2": 2.05},
+        {"kg": 884, "maximum_car_area_m2": 2.20},
+        {"kg": 1000, "maximum_car_area_m2": 2.43},
+        {"kg": 1500, "maximum_car_area_m2": 3.38},
+        {"kg": 2000, "maximum_car_area_m2": 4.22},
+        {"kg": 2500, "maximum_car_area_m2": 4.99}
+      ]
+    }
+  },
+
   "faq": [
     {
-      "id": "home-lift",
-      "keywords": [
-        "home lift",
-        "home elevator",
-        "villa lift",
-        "residential lift"
-      ],
-      "answer": "Yes. Tekton provides residential and luxury home lifts. The suitable configuration depends on the available shaft, number of stops and site conditions."
+      "keywords": ["home lift", "home elevator", "villa lift", "residential lift"],
+      "answer": "Yes. Tekton provides residential and luxury home lifts. The suitable configuration depends on the available shaft, capacity, number of stops, travel, door arrangement and site conditions."
     },
-
     {
-      "id": "passenger-lift",
-      "keywords": [
-        "passenger lift",
-        "passenger elevator"
-      ],
-      "answer": "Tekton provides commercial passenger elevators. The final configuration depends on capacity, travel, traffic and site conditions."
+      "keywords": ["passenger lift", "passenger elevator"],
+      "answer": "Tekton provides passenger elevators for residential and commercial buildings. Final configuration depends on traffic, capacity, travel, speed, shaft dimensions and site conditions."
     },
-
     {
-      "id": "hospital-lift",
-      "keywords": [
-        "hospital lift",
-        "stretcher lift",
-        "bed lift"
-      ],
-      "answer": "Tekton provides hospital and stretcher lift solutions. The final cabin and door arrangement depends on the project requirement."
+      "keywords": ["hospital lift", "stretcher lift", "bed lift"],
+      "answer": "Tekton provides hospital and stretcher lift solutions. Final cabin, loading and door arrangements depend on the project requirement."
     },
-
     {
-      "id": "goods-lift",
-      "keywords": [
-        "goods lift",
-        "freight lift",
-        "material lift"
-      ],
+      "keywords": ["goods lift", "freight lift", "material lift"],
       "answer": "Tekton provides goods and heavy-duty freight lift solutions. Capacity and configuration depend on the intended load and site conditions."
     },
-
     {
-      "id": "mrl",
-      "keywords": [
-        "mrl",
-        "machine room less",
-        "machine-room-less"
-      ],
+      "keywords": ["mrl", "machine room less", "machine-room-less"],
       "answer": "Tekton provides machine-room-less lift configurations. The final arrangement depends on capacity, travel and site conditions."
     },
-
     {
-      "id": "amc",
-      "keywords": [
-        "amc",
-        "annual maintenance",
-        "maintenance contract"
-      ],
+      "keywords": ["amc", "annual maintenance", "maintenance contract"],
       "answer": "Tekton provides preventive Annual Maintenance Contracts and emergency support. The exact AMC scope depends on the installed lift and service requirement."
     },
-
     {
-      "id": "safety",
-      "keywords": [
-        "safety",
-        "lift safety",
-        "safe lift"
-      ],
-      "answer": "Safety is a core part of Tekton engineering. The website states IS 14665-1 related electric traction lift compliance and Auto Rescue Device-equipped systems."
+      "keywords": ["modernisation", "modernization", "retrofit", "old lift", "upgrade existing lift"],
+      "answer": "Tekton provides modernisation and retrofitting for existing lifts. The existing lift and site should be assessed before preparing the engineering proposal."
     },
-
     {
-      "id": "shaft",
-      "keywords": [
-        "shaft size",
-        "shaft dimension",
-        "shaft width",
-        "shaft depth"
-      ],
-      "answer": "Shaft requirements depend on the lift capacity, cabin, door arrangement and overall configuration. Tekton can prepare a site-specific design from the available shaft."
+      "keywords": ["capacity", "rated load", "kg", "passenger", "how many people"],
+      "answer": "Lift capacity should be selected according to intended use, traffic requirement, car area and site conditions. IS 14665 relates passenger rated load to net inside car area; Tekton should confirm the final project value."
     },
-
     {
-      "id": "capacity",
-      "keywords": [
-        "capacity",
-        "passenger capacity",
-        "how many people"
-      ],
-      "answer": "Lift capacity depends on the intended use, cabin size, shaft conditions and project requirements."
+      "keywords": ["shaft size", "shaft dimension", "shaft width", "shaft depth"],
+      "answer": "Shaft requirements depend on capacity, cabin dimensions, door arrangement and the overall lift configuration. Tekton can prepare a site-specific design from the available shaft."
     },
-
     {
-      "id": "doors",
-      "keywords": [
-        "door size",
-        "door width",
-        "lift door",
-        "door opening"
-      ],
-      "answer": "Tekton uses centre-opening or two-panel side-opening door arrangements. The website currently states door options from 600 mm to 1200 mm, but the final door size depends on the selected lift configuration."
+      "keywords": ["door", "door lock", "interlock", "landing door", "door size", "door width", "door opening"],
+      "answer": "Tekton uses centre-opening or two-panel side-opening door arrangements. The website currently states door options from 600 mm to 1200 mm. Door interlocking is a critical safety function, and automatic lifts must not start unless the landing and car doors are closed."
     },
-
     {
-      "id": "modernisation",
-      "keywords": [
-        "modernisation",
-        "modernization",
-        "retrofit",
-        "old lift",
-        "upgrade existing lift"
-      ],
-      "answer": "Tekton provides lift modernisation and retrofitting for existing systems. The existing lift and site are assessed before preparing the engineering proposal."
+      "keywords": ["limit switch", "final limit", "terminal"],
+      "answer": "IS 14665 includes upper and lower terminal stopping provisions and final limit protection intended to stop the lift automatically as specified."
     },
-
     {
-      "id": "experience",
-      "keywords": [
-        "experience",
-        "years experience",
-        "how many years"
-      ],
-      "answer": "Tekton Elevators has over 20 years of engineering experience and has delivered 300+ installations."
+      "keywords": ["levelling", "leveling"],
+      "answer": "The cited IS 14665 table lists a maximum levelling error of 12 mm for lifts with electronic motor control."
     },
-
     {
-      "id": "contact",
-      "keywords": [
-        "phone number",
-        "contact number",
-        "contact details"
-      ],
-      "answer": "You can contact Tekton Elevators at +91 89254 48131 or +91 95001 58530."
+      "keywords": ["testing", "commissioning", "site test"],
+      "answer": "The referenced standard calls for site testing before normal service, including electrical insulation, earthing, motor, brake, control, door-lock, limit-switch, rated-load, contract-speed and safety-gear tests."
+    },
+    {
+      "keywords": ["service lift", "dumb waiter"],
+      "answer": "The referenced IS 14665 Section 2 defines a service lift as a materials-only lift with capacity not exceeding 250 kg, net platform area not exceeding 1 m² and total inside height not exceeding 1.25 m."
+    },
+    {
+      "keywords": ["experience", "years experience", "how many years", "installations"],
+      "answer": "Tekton Elevators has over 20 years of engineering experience and 300+ installations."
+    },
+    {
+      "keywords": ["phone number", "contact number", "contact details", "email"],
+      "answer": "You can contact Tekton Elevators at +91 89254 48131, +91 95001 58530, or info@tektonelevators.com."
     }
   ]
 }
