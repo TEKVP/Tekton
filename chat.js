@@ -1225,12 +1225,17 @@
          ---------------------------------------------------------- */
 
       if (state === 'main') {
-        var directType = parseLiftType(text);
+  var isMainMenuChoice =
+    /^[1-6](?:\.)?(?:\s|$)/.test(value);
 
-        if (directType) {
-          showSpecification(directType);
-          return;
-        }
+  if (!isMainMenuChoice) {
+    var directType = parseLiftType(text);
+
+    if (directType) {
+      showSpecification(directType);
+      return;
+    }
+  }
 
         if (
           value === '1' ||
