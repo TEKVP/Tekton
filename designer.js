@@ -147,16 +147,25 @@
   var CW = 0, CH = 0;
 
   function sizeCanvas() {
-    var box = canvas.parentElement.getBoundingClientRect();
-    CW = Math.max(320, Math.round(box.width));
-    CH = Math.round(Math.min(700, Math.max(420, CW * 0.72)));
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = CW * dpr;
-    canvas.height = CH * dpr;
-    canvas.style.width = CW + 'px';
-    canvas.style.height = CH + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
+  var box = canvas.parentElement.getBoundingClientRect();
+  var available = Math.max(280, Math.round(box.width));
+
+  /* Responsive canvas for phone, tablet and desktop */
+  CW = available;
+
+  var ratio = CW < 480 ? 0.92 : (CW < 900 ? 0.78 : 0.72);
+  CH = Math.round(Math.min(700, Math.max(390, CW * ratio)));
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = Math.round(CW * dpr);
+  canvas.height = Math.round(CH * dpr);
+
+  canvas.style.width = '100%';
+  canvas.style.height = 'auto';
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
 
   function line(x1, y1, x2, y2, color, w, dash) {
     ctx.save();
@@ -199,13 +208,21 @@
     for (i = g; i < CH; i += g) line(0, i, CW, i, p.grid, 1);
 
     /* scale + placement */
-    var padL = 108, padR = 112, padT = 92, padB = 118;
-    var availW = CW - padL - padR;
-    var availH = CH - padT - padB;
-    var scale = Math.min(availW / st.shaftW, availH / st.shaftD);
-    var sw = st.shaftW * scale, sd = st.shaftD * scale;
-    var x0 = padL + (availW - sw) / 2;
-    var y0 = padT + (availH - sd) / 2;
+    var compact = CW < 900;
+var phone = CW < 520;
+
+var padL = phone ? 58 : (compact ? 76 : 108);
+var padR = phone ? 58 : (compact ? 76 : 112);
+var padT = phone ? 66 : (compact ? 78 : 92);
+var padB = phone ? 92 : (compact ? 104 : 118);
+
+var availW = Math.max(120, CW - padL - padR);
+var availH = Math.max(150, CH - padT - padB);
+
+var scale = Math.min(
+  availW / st.shaftW,
+  availH / st.shaftD
+);
 
     /* masonry wall band */
     var wall = 9;
@@ -385,31 +402,116 @@
 
     /* ---------- dimensions (all outside the cabin) ---------- */
 
-    /* cabin width — first level above the shaft */
-    var cDimY = y0 - wall - 20;
-    line(cx, cy, cx, cDimY - 6, p.cabinLine, .8, [4, 3]);
-    line(cx + cw, cy, cx + cw, cDimY - 6, p.cabinLine, .8, [4, 3]);
-    arrowDim(cx, cDimY, cx + cw, cDimY, p.cabinLine, true);
-    labelBox((cw > 190 ? 'CABIN WIDTH  ' : 'CABIN ') + cab.w + ' mm', cx + cw / 2, cDimY, p.cabinLine, p);
+    /* responsive dimension styling */
+var dimMain = phone ? 9.5 : (compact ? 11 : 12.5);
+var dimCabin = phone ? 8.8 : (compact ? 10 : 11.5);
 
-    /* shaft width — second level */
-    var dimY = y0 - wall - 52;
-    line(x0, dimY, x0 + sw, dimY, p.ink, 1.2);
-    tick(x0, dimY, false, p.ink); tick(x0 + sw, dimY, false, p.ink);
-    label('SHAFT WIDTH  ' + st.shaftW + ' mm', x0 + sw / 2, dimY - 13, p.ink, 12.5, 800);
+var cDimY = y0 - wall - (phone ? 16 : 20);
 
-    /* shaft depth — left of the shaft */
-    var dimX = x0 - wall - 30;
-    line(dimX, y0, dimX, y0 + sd, p.ink, 1.2);
-    tick(dimX, y0, true, p.ink); tick(dimX, y0 + sd, true, p.ink);
-    label('SHAFT DEPTH  ' + st.shaftD + ' mm', Math.max(16, dimX - 15), y0 + sd / 2, p.ink, 12.5, 800, 'center', true);
+/* cabin width — first level above the shaft */
+line(cx, cy, cx, cDimY - 5, p.cabinLine, .8, [4, 3]);
+line(cx + cw, cy, cx + cw, cDimY - 5, p.cabinLine, .8, [4, 3]);
 
-    /* cabin depth — right of the shaft */
-    var cDimX = x0 + sw + wall + 30;
-    line(cx + cw, cy, cDimX + 6, cy, p.cabinLine, .8, [4, 3]);
-    line(cx + cw, cyF, cDimX + 6, cyF, p.cabinLine, .8, [4, 3]);
-    arrowDim(cDimX, cy, cDimX, cyF, p.cabinLine, false);
-    label('CABIN DEPTH  ' + cab.d + ' mm', Math.min(CW - 14, cDimX + 16), (cy + cyF) / 2, p.cabinLine, 11, 800, 'center', true);
+arrowDim(
+  cx,
+  cDimY,
+  cx + cw,
+  cDimY,
+  p.cabinLine,
+  true
+);
+
+labelBox(
+  (phone
+    ? 'CABIN '
+    : (cw > 190 ? 'CABIN WIDTH  ' : 'CABIN ')
+  ) + cab.w + ' mm',
+  cx + cw / 2,
+  cDimY,
+  p.cabinLine,
+  p
+);
+
+/* shaft width — second level */
+var dimY = y0 - wall - (phone ? 42 : 52);
+
+line(x0, dimY, x0 + sw, dimY, p.ink, 1.2);
+
+tick(x0, dimY, false, p.ink);
+tick(x0 + sw, dimY, false, p.ink);
+
+label(
+  'SHAFT WIDTH  ' + st.shaftW + ' mm',
+  x0 + sw / 2,
+  dimY - (phone ? 10 : 13),
+  p.ink,
+  dimMain,
+  800
+);
+
+/* shaft depth — left of the shaft */
+var dimX =
+  x0 - wall - (phone ? 15 : (compact ? 22 : 30));
+
+line(dimX, y0, dimX, y0 + sd, p.ink, 1.2);
+
+tick(dimX, y0, true, p.ink);
+tick(dimX, y0 + sd, true, p.ink);
+
+label(
+  'SHAFT DEPTH  ' + st.shaftD + ' mm',
+  Math.max(12, dimX - (phone ? 7 : 15)),
+  y0 + sd / 2,
+  p.ink,
+  dimMain,
+  800,
+  'center',
+  true
+);
+
+/* cabin depth — right of the shaft */
+var cDimX =
+  x0 + sw + wall + (phone ? 15 : (compact ? 22 : 30));
+
+line(
+  cx + cw,
+  cy,
+  cDimX + 5,
+  cy,
+  p.cabinLine,
+  .8,
+  [4, 3]
+);
+
+line(
+  cx + cw,
+  cyF,
+  cDimX + 5,
+  cyF,
+  p.cabinLine,
+  .8,
+  [4, 3]
+);
+
+arrowDim(
+  cDimX,
+  cy,
+  cDimX,
+  cyF,
+  p.cabinLine,
+  false
+);
+
+label(
+  'CABIN DEPTH  ' + cab.d + ' mm',
+  Math.min(CW - 8, cDimX + (phone ? 7 : 12)),
+  (cy + cyF) / 2,
+  p.cabinLine,
+  dimCabin,
+  800,
+  'center',
+  true
+);
 
     /* door chain: 100 | clear opening | 100 */
     var chainY = sill + 34;
@@ -437,7 +539,14 @@
       ['Jamb ' + FRAME_WIDTH + ' mm', p.frame, p.frame]
     ]);
 
-    label('PLAN VIEW · NOT TO PRINT SCALE · ALL DIMENSIONS IN mm', CW / 2, CH - 12, p.muted, 10, 700);
+    label(
+  'PLAN VIEW · NOT TO PRINT SCALE · ALL DIMENSIONS IN mm',
+  CW / 2,
+  CH - (CW < 520 ? 9 : 12),
+  p.muted,
+  CW < 520 ? 8.2 : 10,
+  700
+);
   }
 
   function drawLeaf(xa, xb, y, t, fill, stroke) {
@@ -505,26 +614,83 @@
   }
 
   function legend(p, items) {
-    var y = CH - 30, pad = 14, boxW = 13, gap = 7;
-    ctx.save();
-    ctx.font = '700 10.5px Inter, system-ui, sans-serif';
-    var total = 0, i;
-    for (i = 0; i < items.length; i++) {
-      total += boxW + gap + ctx.measureText(items[i][0]).width + pad;
+  var phone = CW < 520;
+  var compact = CW < 900;
+
+  var yStart = CH - (phone ? 38 : 30);
+  var rowGap = phone ? 18 : 16;
+
+  var pad = phone ? 8 : (compact ? 10 : 14);
+  var boxW = phone ? 11 : 13;
+  var gap = phone ? 5 : 7;
+
+  var fontSize =
+    phone ? 8.3 :
+    (compact ? 9.5 : 10.5);
+
+  ctx.save();
+
+  ctx.font =
+    '700 ' +
+    fontSize +
+    'px Inter, system-ui, sans-serif';
+
+  var x = 10;
+  var y = yStart;
+  var usable = CW - 20;
+
+  for (var i = 0; i < items.length; i++) {
+    var textW =
+      ctx.measureText(items[i][0]).width;
+
+    var itemW =
+      boxW +
+      gap +
+      textW +
+      pad;
+
+    /* Move to next row when the phone is too narrow */
+    if (x > 10 && x + itemW > usable) {
+      x = 10;
+      y += rowGap;
     }
-    var x = Math.max(10, (CW - total) / 2);
-    for (i = 0; i < items.length; i++) {
-      ctx.fillStyle = items[i][1];
-      ctx.fillRect(x, y - 6, boxW, 11);
-      ctx.strokeStyle = items[i][2]; ctx.lineWidth = 1.2;
-      ctx.strokeRect(x + .6, y - 5.4, boxW - 1.2, 9.8);
-      x += boxW + gap;
-      ctx.fillStyle = p.muted; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-      ctx.fillText(items[i][0], x, y);
-      x += ctx.measureText(items[i][0]).width + pad;
-    }
-    ctx.restore();
+
+    ctx.fillStyle = items[i][1];
+
+    ctx.fillRect(
+      x,
+      y - 5,
+      boxW,
+      10
+    );
+
+    ctx.strokeStyle = items[i][2];
+    ctx.lineWidth = 1.1;
+
+    ctx.strokeRect(
+      x + 0.6,
+      y - 4.4,
+      boxW - 1.2,
+      8.8
+    );
+
+    x += boxW + gap;
+
+    ctx.fillStyle = p.muted;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+
+    ctx.fillText(
+      items[i][0],
+      x,
+      y
+    );
+
+    x += textW + pad;
   }
+
+  ctx.restore();
+}
 
   /* ---------- UI sync ---------- */
   function setChip(el, txt, cls) {
